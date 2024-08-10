@@ -4,7 +4,7 @@ jobs:
   # Job for setting up the backend
   setup-backend:
     docker:
-      - image: circleci/node:20
+      - image: circleci/node:16
     steps:
       - checkout
       - run:
@@ -21,7 +21,7 @@ jobs:
   # Job for setting up the frontend
   setup-frontend:
     docker:
-      - image: circleci/node:14
+      - image: circleci/node:16
     steps:
       - checkout
       - run:
