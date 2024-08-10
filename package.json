@@ -1,16 +1,21 @@
 {
+    "name": "my-node-app",
+    "version": "1.0.0",
+    "main": "index.js",
     "scripts": {
-        "frontend:install": "cd udagram/udagram-frontend && npm install -f",
-        "frontend:start": "cd udagram/udagram-frontend && npm run start",
-        "frontend:build": "cd udagram/udagram-frontend && npm run build",
-        "frontend:test": "cd udagram/udagram-frontend && npm run test",
-        "frontend:e2e": "cd udagram/udagram-frontend && npm run e2e",
-        "frontend:lint": "cd udagram/udagram-frontend && npm run lint",
-        "frontend:deploy": "cd udagram/udagram-frontend && npm run deploy",
-        "api:install": "cd udagram/udagram-api && npm install .",
-        "api:build": "cd udagram/udagram-api && npm run build",
-        "api:start": "cd udagram/udagram-api && npm run dev",
-        "api:deploy": "cd udagram/udagram-api && npm run deploy",
-        "deploy": "npm run api:deploy && npm run frontend:deploy"
-    }
-}
+      "start": "npm run start:backend & npm run start:frontend",
+      "start:backend": "cd backend && npm start",
+      "start:frontend": "cd frontend && npm start",
+      "build": "npm run build:backend && npm run build:frontend",
+      "build:backend": "cd backend && npm run build",
+      "build:frontend": "cd frontend && npm run build",
+      "test": "npm run test:backend && npm run test:frontend",
+      "test:backend": "cd backend && npm test",
+      "test:frontend": "cd frontend && npm test"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": ""
+  }
+  
