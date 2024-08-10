@@ -1,44 +1,48 @@
 version: 2.1
 
-executors:
-  node-executor:
-    docker:
-      - image: circleci/node:14.17.0
-    working_directory: ~/repo
-
 jobs:
-  install_dependencies:
-    executor: node-executor
+  # Job for setting up the backend
+  setup-backend:
+    docker:
+      - image: circleci/node:20
     steps:
       - checkout
       - run:
-          name: Install dependencies
-          command: npm install
+          name: Install backend dependencies
+          command: |
+            cd backend
+            npm install
+      - run:
+          name: Run backend tests
+          command: |
+            cd backend
+            npm test
 
-  run_tests:
-    executor: node-executor
+  # Job for setting up the frontend
+  setup-frontend:
+    docker:
+      - image: circleci/node:14
     steps:
       - checkout
       - run:
-          name: Run tests
-          command: npm test
-
-  deploy:
-    executor: node-executor
-    steps:
-      - checkout
+          name: Install frontend dependencies
+          command: |
+            cd frontend
+            npm install
       - run:
-          name: Deploy to production
-          command: ./deploy.sh
+          name: Build frontend
+          command: |
+            cd frontend
+            npm run build
+      - run:
+          name: Run frontend tests
+          command: |
+            cd frontend
+            npm test
 
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - install_dependencies
-      - run_tests:
-          requires:
-            - install_dependencies
-      - deploy:
-          requires:
-            - run_tests
+      - setup-backend
+      - setup-frontend
