@@ -11,11 +11,13 @@
       "build:frontend": "cd frontend && npm run build",
       "test": "npm run test:backend && npm run test:frontend",
       "test:backend": "cd backend && npm test",
-      "test:frontend": "cd frontend && npm test"
+      "test:frontend": "cd frontend && npm test",
+      "install:all": "npm run install:backend && npm run install:frontend",
+      "install:backend": "cd backend && npm install",
+      "install:frontend": "cd frontend && npm install"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "description": ""
   }
-  
